@@ -10,8 +10,9 @@ async function getReq() {
         return error
     }
 }
-
-
+app.get("/", (req, res) => {
+    res.send({ message: "Hello world :)" })
+})
 app.post("/getreq", (req, res) => {
     res.send(getReq(req.body.url));
 })
