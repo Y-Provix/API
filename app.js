@@ -1,21 +1,21 @@
-const axios = require('axios');
+const axios = require("axios");
 const express = require("express");
-const { env } = require('process');
 const app = express()
 
-async function getReq() {
+async function getReq(url) {
     try {
         const response = await axios.get(url);
-        return response
+        return response.data;
     } catch (error) {
-        return error
+        throw error;
     }
 }
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
     res.send({ message: "Hello world :)" })
 })
-app.post("/getreq", (req, res) => {
-    res.send(getReq(req.body.url));
+app.post("/getreq", async (req, res) => {
+    const jsonReturned = await getReq(req.body.url)
+    res.send(jsonReturned);
 })
 
 
