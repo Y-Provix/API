@@ -2,6 +2,8 @@ const axios = require("axios");
 const express = require("express");
 const app = express()
 
+app.use(express.json())
+
 async function getReq(url) {
     try {
         const response = await axios.get(url);
