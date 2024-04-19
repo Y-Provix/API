@@ -1,5 +1,6 @@
 const axios = require('axios');
-const express = require("express")
+const express = require("express");
+const { env } = require('process');
 const app = express()
 
 async function getReq() {
@@ -16,4 +17,8 @@ app.get("/", (req, res) => {
 app.post("/getreq", (req, res) => {
     res.send(getReq(req.body.url));
 })
-//hi
+
+
+app.listen(3000 || process.env.PORT, () => {
+    console.log("Server is working!");
+})
